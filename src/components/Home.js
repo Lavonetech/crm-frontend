@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useReducer } from 'react';
+import Header from './Header';
+import ProductCard from './ProductCard';
+
 
 const Home = () => {
-  const [isVerified, setIsVerified] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5002/icecream');
-        console.log(response.data);
-        setIsVerified(response.data.isVerified);
-      } catch (err) {
-        console.log("you're getting an error");
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (!isVerified) {
-      navigate('/');
-    } else {
-      navigate('/icecream');
-    }
-  }, [isVerified]);
 
   return (
     <div>
-      <Box m="10rem 5rem">
-        <Box>
-          <img src="/images/ice-cream.jpg" alt="" />
-          <h2>Taste your Ice-Cream</h2>
-          <ul className="list">
-            <li>
-              <a href="/icecream">More Flavours</a>
-            </li>
-          </ul>
-        </Box>
-      </Box>
+      <Header  />
+      <img
+          src="images/18899183.png"
+          alt="Header Banner"
+          style={{width:"100%", maxWidth: "100%",height:"auto",backgroundRepeat:"no-repeat" }}
+        />
+
+        <div className='col-md-12 image-carousel'>
+          <div className='carousel-image'><img src="images/image1.jpeg" className='inner-image'/></div>
+          <div className='carousel-image'><img src="images/image2.jpeg" className='inner-image'/></div>
+          <div className='carousel-image'><img src="images/20423.jpg" className='inner-image'/></div>
+          <div className='carousel-image'><img src="images/image6.jpg" className='inner-image'/></div>
+          <div className='carousel-image'><img src="images/wired.jpg" className='inner-image'/></div>
+          <div className='carousel-image'><img src="images/image-5.jpg" className='inner-image'/></div>
+          
+         
+          
+        </div>
+      <ProductCard />
     </div>
   );
 };
